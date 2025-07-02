@@ -1,6 +1,7 @@
 <!-- register.html -->
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -40,22 +41,22 @@
 
   <div class="register-container">
     <h4 class="text-center mb-4">회원가입</h4>
-    <form >
+    <form action="/login" method="post">
       <div class="mb-3 position-relative">
         <i class="bi bi-person-circle form-icon"></i>
-        <input type="text" class="form-control" placeholder="아이디" required>
+        <input type="text" class="form-control" placeholder="아이디" name="userid" required>
       </div>
       <div class="mb-3 position-relative">
         <i class="bi bi-lock form-icon"></i>
-        <input type="password" class="form-control" placeholder="비밀번호" required>
+        <input type="password" class="form-control" placeholder="비밀번호" name="password" required>
       </div>
       <div class="mb-3 position-relative">
         <i class="bi bi-person form-icon"></i>
-        <input type="text" class="form-control" placeholder="회원명" required>
+        <input type="text" class="form-control" placeholder="회원명" name="username" required>
       </div>
       <div class="mb-3 position-relative">
         <i class="bi bi-telephone form-icon"></i>
-        <input type="tel" class="form-control" placeholder="전화번호" required>
+        <input type="tel" class="form-control" placeholder="전화번호" name="usertel" required>
       </div>
       <button type="submit" class="btn btn-success w-100">회원가입</button>
     </form>

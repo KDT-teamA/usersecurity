@@ -37,6 +37,9 @@ public class SecurityConfig {
             auth.requestMatchers("/manager/**").hasAnyRole("ADMIN");
         });
 
+        //h2 로그인 이후
+        http.headers((headers) -> headers.frameOptions().sameOrigin());
+
         //로그인 설정 (username(변경가능), password(변경불가) 구성)
         http.formLogin(login -> login
                 .loginPage("/login") //사용자가 만든 로그인 페이지의 맵핑명

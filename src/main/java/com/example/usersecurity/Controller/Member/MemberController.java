@@ -26,7 +26,7 @@ public class MemberController {
     }
 
     @PostMapping("/register")
-    public String registerProc(MemberDTO memberDTO, Model model) {
+    public String registerProc(MemberDTO memberDTO) {
         memberService.saveUser(memberDTO);
         return "member/login";
     }
