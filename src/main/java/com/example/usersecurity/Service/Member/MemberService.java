@@ -54,3 +54,15 @@ public class MemberService implements UserDetailsService {
         memberRepository.save(save);
     }
 }
+/*
+SecurityConfig : 맵핑별 권한 부여 설정
+                 로그인 설정, 로그아웃 설정
+
+~SuccessHandler : 로그인 설공 시 설정 (섹션설정 - 클라이언트 정보 저장, 유효시간 설정)
+
+~EntryPoint : 로그인 실패 시 설정 (생략 가능)
+
+Service 에서 사용자가 로그인처리를 재구성(implements UserDetailsService)
+    해당 서비스는 security의 로그인 처리를 위한 사용자 서비스
+    아이디로 존재여부확인 후 아이디, 비밀번호, 권한을 security에 전달해서 비교
+*/
