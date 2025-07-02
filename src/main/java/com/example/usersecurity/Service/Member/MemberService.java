@@ -1,5 +1,6 @@
 package com.example.usersecurity.Service.Member;
 
+import com.example.usersecurity.Constant.Level;
 import com.example.usersecurity.DTO.Member.MemberDTO;
 import com.example.usersecurity.Entity.Member.MemberEntity;
 import com.example.usersecurity.Repository.Member.MemberRepository;
@@ -42,12 +43,13 @@ public class MemberService implements UserDetailsService {
     //회원가입처리
     public void saveUser(MemberDTO memberDTO) {
         Optional<MemberEntity> memberEntity = memberRepository.findByUserid(memberDTO.getUserid());
-        if (memberEntity.isPresent()) {
+        if (memberEntity.isPresent()) { //이미 가입된 아이디가 존재하면
             throw new IllegalStateException("이미 가입된 회원입니다.");
         }
         String password = passwordEncoder.encode(memberDTO.getPassword()); //유저가 입력한 비밀번호를 암호화처리
         MemberEntity save = modelMapper.map(memberDTO, MemberEntity.class);
-        save.setPassword(password);
+        save.setPassword(password); //암호화한 비밀번호를 저장
+        save.setLevel(Level.USER); //가입 시 기본 권한은 USER(사용자)로
 
         memberRepository.save(save);
     }
