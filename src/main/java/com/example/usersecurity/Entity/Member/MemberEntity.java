@@ -16,7 +16,7 @@ public class MemberEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
-    private Long pid; //번호
+    private Integer pid; //번호
 
     @Column(length = 50, nullable = false, unique = true)
     private String userid; //사용자 아이디
