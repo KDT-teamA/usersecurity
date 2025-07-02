@@ -40,14 +40,14 @@
 
   <div class="login-container">
     <h4 class="text-center mb-4">로그인</h4>
-    <form>
+    <form action="/login" method="post">
       <div class="mb-3 position-relative">
         <i class="bi bi-person form-icon"></i>
-        <input type="text" class="form-control" placeholder="이메일 주소" required>
+        <input type="text" class="form-control" name="userid" placeholder="아이디" required>
       </div>
       <div class="mb-3 position-relative">
         <i class="bi bi-lock form-icon"></i>
-        <input type="password" class="form-control" placeholder="비밀번호" required>
+        <input type="password" class="form-control" name="password" placeholder="비밀번호" required>
       </div>
       <button type="submit" class="btn btn-primary w-100">로그인</button>
     </form>
