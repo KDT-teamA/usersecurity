@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
@@ -35,6 +36,24 @@ public class SecurityConfig {
             auth.requestMatchers("/board/**", "/product/**").authenticated();
             auth.requestMatchers("/manager/**").hasAnyRole("ADMIN");
         });
+
+        //로그인 설정 (username(변경가능), password(변경불가) 구성)
+        http.formLogin(login -> login
+                .loginPage("/login") //사용자가 만든 로그인 페이지의 맵핑명
+                .defaultSuccessUrl("/") //로그인 성공시 이동할 맵핑명
+                .usernameParameter("userid") //로그인 폼에서 아이디에 해당하는 name명 (기본 username 자동인식)
+                .permitAll() //로그인 폼에 접근권한
+                .successHandler(new CustomAuthenticationSuccessHandler()) //로그인 성공 후 처리할 클래스
+        ); //로그인 폼에 대한 설정
+
+        //csrf 변조방지
+        http.csrf(AbstractHttpConfigurer::disable);
+
+        //로그아웃 처리
+        http.logout(logout -> logout
+                .logoutUrl("/logout") //로그아웃 맵핑명
+                .logoutSuccessUrl("/login") //로그아웃 성공 시
+        );
 
         return http.build();
     }
